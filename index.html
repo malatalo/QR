@@ -1,0 +1,70 @@
+<html>
+  <head>
+    <title>QR</title>
+
+    <!-- https://davidshimjs.github.io/qrcodejs/ -->
+    <script src="qrcode.min.js"></script>
+    
+    <style>
+      html {
+        background: rgb(110, 255, 255);
+        background: radial-gradient(
+          circle,
+          rgba(110, 255, 255, 1) 32%,
+          rgba(0, 229, 255, 1) 64%,
+          rgba(0, 178, 204, 1) 88%
+        );
+        background-repeat: no-repeat;
+        height: 100%;
+      }
+
+      .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+      }
+
+      #textInput {
+        width: 350;
+        height: 125px;
+        background: rgba(255, 255, 255, 0.5);
+      }
+
+      #qrcode {
+        height: 256px;
+        width: 256px;
+        margin: 50px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div id="qrcode"></div>
+      <script type="text/javascript">
+        window.onload = () => {
+          document.getElementById("textInput").focus();
+        }
+
+        gen = () => {
+          let qrcode = document.getElementById("qrcode");
+          while (qrcode.firstChild) {
+            qrcode.removeChild(qrcode.firstChild);
+          }
+          new QRCode("qrcode", {
+            text: document.getElementById("textInput").value,
+            width: 256,
+            height: 256,
+            colorDark: "#000",
+            colorLight: "rgba(0,0,0,0)",
+            correctLevel: QRCode.CorrectLevel.L
+          });
+        };
+      </script>
+      <textarea id="textInput" oninput="gen()"></textarea>
+      <button onclick="gen()">generate</button>
+      <!-- <div id="qrcode"></div> -->
+    </div>
+  </body>
+</html>
