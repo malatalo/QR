@@ -4,7 +4,7 @@
 
     <!-- https://davidshimjs.github.io/qrcodejs/ -->
     <script src="qrcode.min.js"></script>
-    
+
     <style>
       html {
         background: rgb(110, 255, 255);
@@ -44,8 +44,14 @@
       <div id="qrcode"></div>
       <script type="text/javascript">
         window.onload = () => {
+          let hash = window.location.hash;
+          if (hash) {
+            hash = hash.substr(1);
+            document.getElementById("textInput").value = hash;
+            gen();
+          }
           document.getElementById("textInput").focus();
-        }
+        };
 
         gen = () => {
           let qrcode = document.getElementById("qrcode");
