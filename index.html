@@ -46,7 +46,7 @@
         window.onload = () => {
           let hash = window.location.hash;
           if (hash) {
-            hash = hash.substr(1);
+            hash = decodeURIComponent(hash.substr(1));
             document.getElementById("textInput").value = hash;
             gen();
           }
