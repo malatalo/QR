@@ -58,14 +58,16 @@
           while (qrcode.firstChild) {
             qrcode.removeChild(qrcode.firstChild);
           }
+          const txtInput = document.getElementById("textInput").value;
           new QRCode("qrcode", {
-            text: document.getElementById("textInput").value,
+            text: txtInput,
             width: 256,
             height: 256,
             colorDark: "#000",
             colorLight: "rgba(0,0,0,0)",
             correctLevel: QRCode.CorrectLevel.L
           });
+          window.location.hash = txtInput;
         };
       </script>
       <textarea id="textInput" oninput="gen()"></textarea>
